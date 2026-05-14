@@ -1,0 +1,10 @@
+services:
+  nextjs:
+    build: .
+    container_name: the-grease-pro
+    environment:
+      - NEXT_PUBLIC_PRODUCTION_URL=https://example.com
+      - NEXT_PUBLIC_BUSINESS_EMAIL=example@gmail.com
+      - NEXT_PUBLIC_BUSINESS_NUMBER=(123) 456-7890
+    ports:
+      - "3000:3000"
