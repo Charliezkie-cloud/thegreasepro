@@ -11,7 +11,7 @@ const BUSINESS_NUMBER = process.env.NEXT_PUBLIC_BUSINESS_NUMBER ?? "";
 const urls = [
   { name: "Booking", url: "/" },
   { name: "Services", url: "/services" },
-  { name: "Expertise", url: "/expertise" },
+  // { name: "Expertise", url: "/expertise" },
 ];
 
 export default function Navbar() {

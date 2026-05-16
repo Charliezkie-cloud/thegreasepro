@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Booking - TheGreasePro</title>
+  <style>
+    /* Reset styles for email clients */
+    body,
+    table,
+    td,
+    a {
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    table,
+    td {
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0d0d0d;
+    }
+
+    /* Responsive rules for mobile */
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 100% !important;
+        padding: 0 10px !important;
+      }
+
+      .content-padding {
+        padding: 20px !important;
+      }
+    }
+  </style>
+</head>
+
+<body style="margin: 0; padding: 0; background-color: #0d0d0d; font-family: Arial, sans-serif;">
+
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #0d0d0d; padding: 20px 0;">
+    <tr>
+      <td align="center">
+
+        <table class="container" border="0" cellpadding="0" cellspacing="0" width="600"
+          style="background-color: #1a1a1a; border: 1px solid #333333; border-top: 4px solid #ff5a00;">
+
+          <tr>
+            <td align="center" style="padding: 30px 20px; border-bottom: 1px solid #333333;">
+              <h1
+                style="margin: 0; color: #ffffff; font-size: 28px; font-weight: bold; font-style: italic; letter-spacing: 1px;">
+                The<span style="color: #ff5a00;">Grease</span>Pro
+              </h1>
+              <p
+                style="margin: 5px 0 0 0; color: #aaaaaa; font-size: 14px; text-transform: uppercase; letter-spacing: 2px;">
+                Mobile Autocare
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="content-padding" style="padding: 30px 40px 10px 40px;">
+              <h2 style="margin: 0; color: #ff5a00; font-size: 22px;">New Booking Request</h2>
+              <p style="margin: 10px 0 0 0; color: #dddddd; font-size: 15px; line-height: 1.5;">
+                A new mobile service appointment has been requested. Here are the details:
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="content-padding" style="padding: 20px 40px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%"
+                style="background-color: #242424; border-radius: 5px;">
+                <tr>
+                  <td style="padding: 20px;">
+                    <h3
+                      style="margin: 0 0 15px 0; color: #ffffff; font-size: 16px; border-bottom: 1px solid #444444; padding-bottom: 5px;">
+                      Customer Information</h3>
+
+                    <p style="margin: 0 0 8px 0; color: #bbbbbb; font-size: 14px;">
+                      <strong style="color: #ffffff;">Name:</strong> {{firstName}} {{lastName}}
+                    </p>
+                    <p style="margin: 0 0 8px 0; color: #bbbbbb; font-size: 14px;">
+                      <strong style="color: #ffffff;">Phone:</strong> <a href="tel:{{mobileNumber}}"
+                        style="color: #ff5a00; text-decoration: none;">{{mobileNumber}}</a>
+                    </p>
+                    <p style="margin: 0 0 8px 0; color: #bbbbbb; font-size: 14px;">
+                      <strong style="color: #ffffff;">Email:</strong> <a href="mailto:{{emailAddress}}"
+                        style="color: #ff5a00; text-decoration: none;">{{emailAddress}}</a>
+                    </p>
+                    <p style="margin: 0; color: #bbbbbb; font-size: 14px;">
+                      <strong style="color: #ffffff;">Service Address:</strong><br>
+                      {{servicesAddress}}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="content-padding" style="padding: 0 40px 30px 40px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%"
+                style="background-color: #242424; border-radius: 5px;">
+                <tr>
+                  <td style="padding: 20px;">
+                    <h3
+                      style="margin: 0 0 15px 0; color: #ffffff; font-size: 16px; border-bottom: 1px solid #444444; padding-bottom: 5px;">
+                      Service & Vehicle Details</h3>
+
+                    <p style="margin: 0 0 8px 0; color: #bbbbbb; font-size: 14px;">
+                      <strong style="color: #ffffff;">Vehicle:</strong> {{vehicleDetails}}
+                    </p>
+                    <p style="margin: 0 0 8px 0; color: #bbbbbb; font-size: 14px;">
+                      <strong style="color: #ffffff;">Package Selected:</strong> <span
+                        style="color: #ff5a00; font-weight: bold;">{{servicePackage}}</span>
+                    </p>
+                    <p style="margin: 0 0 8px 0; color: #bbbbbb; font-size: 14px;">
+                      <strong style="color: #ffffff;">Preferred Date:</strong> {{preferredDate}}
+                    </p>
+                    <p style="margin: 0; color: #bbbbbb; font-size: 14px;">
+                      <strong style="color: #ffffff;">Preferred Time:</strong> {{preferredTime}}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding: 20px; background-color: #111111; border-top: 1px solid #333333;">
+              <p style="margin: 0 0 10px 0; color: #ffffff; font-size: 14px; font-weight: bold;">
+                PREMIUM CARE AT YOUR DOORSTEP.
+              </p>
+              <p style="margin: 0; color: #888888; font-size: 12px;">
+                Call / Text: <a href="tel:8624386482" style="color: #ff5a00; text-decoration: none;">{{phone}}</a><br>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+
+</html>

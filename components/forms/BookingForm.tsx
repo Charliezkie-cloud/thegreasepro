@@ -1,6 +1,6 @@
 import { Calendar, MapPin, Clock, CheckCircle2, FlaskRound as OilBarrel, Settings2, Diamond, Wrench } from 'lucide-react';
 import { motion } from 'motion/react';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, SubmitEvent, useState } from 'react';
 
 const packages = [
   { name: 'COMPACT CARS', sub: '(Civic, Corolla)', value: 'compact' },
@@ -30,7 +30,7 @@ export default function BookingForm() {
     setSelectedPackage(e.target.value);
   }
 
-  function bookingFormOnSubmit(e: FormEvent<HTMLFormElement>) {
+  function bookingFormOnSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
   }
   
