@@ -5,7 +5,7 @@ import { Droplet as Oil, Disc as Brake, Diamond, Wrench, ShieldCheck, Zap, Therm
 import Image from 'next/image';
 
 import engineImage1 from "@/public/engine-1.jpg";
-import engineImage2 from "@/public/engine-2.avif";
+import engineImage2 from "@/public/engine-2.jpg";
 import engineImage3 from "@/public/engine-3.jpg";
 
 const engineImages = [engineImage1, engineImage2, engineImage3];

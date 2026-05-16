@@ -1,37 +1,51 @@
+import { BookingBody } from '@/types/models.types';
 import { Calendar, MapPin, Clock, CheckCircle2, FlaskRound as OilBarrel, Settings2, Diamond, Wrench } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ChangeEvent, SubmitEvent, useState } from 'react';
 
 const packages = [
-  { name: 'COMPACT CARS', sub: '(Civic, Corolla)', value: 'compact' },
-  { name: 'MIDSIZE SEDANS', sub: '(Camry, Accord)', value: 'midsize' },
-  { name: 'SMALL SUVS', sub: '(CR-V, RAV4)', value: 'small-suv' },
-  { name: 'FULL-SIZE SUVS / TRUCK', sub: '(F-150, Silverado)', value: 'large' },
+  { name: 'COMPACT CARS', sub: '(Civic, Corolla)', value: 'Compact (Civic, Corolla, etc.)' },
+  { name: 'MIDSIZE SEDANS', sub: '(Camry, Accord)', value: 'Midsize (Camry, Accord, etc.)' },
+  { name: 'SMALL SUVS', sub: '(CR-V, RAV4)', value: 'Small-SUV (CR-V, RAV4, etc.)' },
+  { name: 'FULL-SIZE SUVS / TRUCK', sub: '(F-150, Silverado)', value: 'Large (F-150, Silverado, etc.)' },
 ];
 
 export default function BookingForm() {
   // States
-  const [selectedPackage, setSelectedPackage] = useState(packages[0].value);
-  
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-
-  const [serviceAddress, setServiceAddress] = useState("");
-  const [vehicleDetails, setVehicleDetails] = useState("");
-
-  const [preferredDate, setPreferredDate] = useState("");
-  const [preferredTime, setPreferredTime] = useState("");
+  const [bookingBody, setBookingBody] = useState<BookingBody>({
+    servicePackage: "Compact (Civic, Corolla, etc.)",
+    firstName: "",
+    lastName: "",
+    emailAddress: "",
+    mobileNumber: "",
+    preferredDate: "",
+    preferredTime: "",
+    servicesAddress: "",
+    vehicleDetails: ""
+  });
 
   // Handlers
   function handlePackageChange(e: ChangeEvent<HTMLInputElement>) {
-    setSelectedPackage(e.target.value);
+    setBookingBody(prev => ({ ...prev, servicePackage: e.target.value }));
   }
 
-  function bookingFormOnSubmit(e: SubmitEvent<HTMLFormElement>) {
+  async function bookingFormOnSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
+    
+    try {
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "Application/json" },
+        body: JSON.stringify(bookingBody)
+      });
+
+      if (res.ok) {
+        const jsonRes = await res.json();
+        console.log(jsonRes);
+      }
+    } catch (error) {
+      console.log(error instanceof Error ? error.message : error);
+    }
   }
   
   return (
@@ -79,7 +93,7 @@ export default function BookingForm() {
                           name="package"
                           value={pkg.value}
                           className="accent-primary-container h-4 w-4 bg-transparent border-gray-600"
-                          checked={selectedPackage === pkg.value}
+                          checked={bookingBody.servicePackage === pkg.value}
                           onChange={handlePackageChange}
                         />
                         <div>
@@ -173,14 +187,14 @@ export default function BookingForm() {
                     First Name{" "}
                     <span className='text-red-500'>*</span>
                   </label>
-                  <input value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" className="input-field" placeholder="Wrench" required />
+                  <input value={bookingBody.firstName} onChange={(e) => setBookingBody(prev => ({ ...prev, firstName: e.target.value }))} type="text" className="input-field" placeholder="Wrench" required />
                 </div>
                 <div className="space-y-2">
                   <label className="font-label text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">
                     Last Name{" "}
                     <span className='text-red-500'>*</span>
                   </label>
-                  <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" className="input-field" placeholder="Turner" required />
+                  <input value={bookingBody.lastName} onChange={(e) => setBookingBody(prev => ({ ...prev, lastName: e.target.value }))} type="text" className="input-field" placeholder="Turner" required />
                 </div>
               </div>
 
@@ -194,7 +208,7 @@ export default function BookingForm() {
                     <div className="bg-surface-container-highest/40 border border-r-0 border-outline-variant px-4 flex items-center text-xs text-on-surface font-bold">
                       +1
                     </div>
-                    <input value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} type="tel" className="input-field" placeholder="(555) 000-0000" required />
+                    <input value={bookingBody.mobileNumber} onChange={(e) => setBookingBody(prev => ({ ...prev, mobileNumber: e.target.value }))} type="tel" className="input-field" placeholder="(555) 000-0000" required />
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -202,7 +216,7 @@ export default function BookingForm() {
                     Email Address{" "}
                     <span className='text-red-500'>*</span>
                   </label>
-                  <input value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)} type="email" className="input-field" placeholder="owner@garage.com" required />
+                  <input value={bookingBody.emailAddress} onChange={(e) => setBookingBody(prev => ({ ...prev, emailAddress: e.target.value }))} type="email" className="input-field" placeholder="owner@garage.com" required />
                 </div>
               </div>
 
@@ -213,7 +227,7 @@ export default function BookingForm() {
                 </label>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-3.5 w-4 h-4 text-primary-container opacity-60" />
-                  <input value={serviceAddress} onChange={(e) => setServiceAddress(e.target.value)} type="text" className="input-field pl-10" placeholder="Street, City, Zip Code" required />
+                  <input value={bookingBody.servicesAddress} onChange={(e) => setBookingBody(prev => ({ ...prev, servicesAddress: e.target.value }))} type="text" className="input-field pl-10" placeholder="Street, City, Zip Code" required />
                 </div>
               </div>
 
@@ -225,7 +239,7 @@ export default function BookingForm() {
                 <textarea 
                   className="input-field min-h-[100px] resize-none" 
                   placeholder="Year, Make, Model & Specific Concerns"
-                  value={vehicleDetails} onChange={(e) => setVehicleDetails(e.target.value)}
+                  value={bookingBody.vehicleDetails} onChange={(e) => setBookingBody(prev => ({ ...prev, vehicleDetails: e.target.value }))}
                   required
                 ></textarea>
               </div>
@@ -243,7 +257,7 @@ export default function BookingForm() {
                     </label>
                     <div className="relative">
                       <Calendar className="absolute right-3 top-3.5 w-4 h-4 text-primary-container cursor-pointer" />
-                      <input value={preferredDate} onChange={(e) => setPreferredDate(e.target.value)} type="date" className="input-field pr-10 appearance-none" required />
+                      <input value={bookingBody.preferredDate} onChange={(e) => setBookingBody(prev => ({ ...prev, preferredDate: e.target.value }))} type="date" className="input-field pr-10 appearance-none" required />
                     </div>
                   </div>
                   <div className="space-y-2">
@@ -253,7 +267,7 @@ export default function BookingForm() {
                     </label>
                     <div className="relative">
                       <Clock className="absolute right-3 top-3.5 w-4 h-4 text-primary-container cursor-pointer" />
-                      <input value={preferredTime} onChange={(e) => setPreferredTime(e.target.value)} type="time" className="input-field pr-10 appearance-none" required />
+                      <input value={bookingBody.preferredTime} onChange={(e) => setBookingBody(prev => ({ ...prev, preferredTime: e.target.value }))} type="time" className="input-field pr-10 appearance-none" required />
                     </div>
                   </div>
                 </div>

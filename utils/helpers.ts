@@ -12,7 +12,7 @@ const BUSINESS_NUMBER = process.env.NEXT_PUBLIC_BUSINESS_NUMBER ?? "";
  * @returns The new booking populated HTML string
  */
 export async function getNewBookingHtml(body: BookingBody): Promise<string> {
-  const templatePath = path.join(process.cwd(), 'email-templates', "new-booking");
+  const templatePath = path.join(process.cwd(), "public", 'email-templates', "new-booking.html");
   const rawHtmlContent = await readFile(templatePath, 'utf8');
   return rawHtmlContent
     .replaceAll('{{servicePackage}}', body.servicePackage)
@@ -25,4 +25,48 @@ export async function getNewBookingHtml(body: BookingBody): Promise<string> {
     .replaceAll('{{preferredDate}}', body.preferredDate)
     .replaceAll('{{preferredTime}}', body.preferredTime)
     .replaceAll('{{phone}}', BUSINESS_NUMBER);
+}
+
+/**
+ * Sanitizes the booking body into a safe data.
+ * @param body The body of the booking
+ * @returns The sanitized booking body
+ */
+export function sanitizeBookingBody(body: BookingBody): BookingBody {
+  return {
+    firstName: sanitizeString(body.firstName),
+    lastName: sanitizeString(body.lastName),
+    mobileNumber: sanitizeString(body.mobileNumber),
+    emailAddress: sanitizeString(body.emailAddress),
+    servicePackage: sanitizeString(body.servicePackage),
+    preferredDate: sanitizeString(body.preferredDate),
+    preferredTime: sanitizeString(body.preferredTime),
+    servicesAddress: sanitizeString(body.servicesAddress),
+
+    vehicleDetails: sanitizeString(body.vehicleDetails, true),
+  };
+}
+
+/**
+ * Sanitizes the string into a safe string value
+ * @param str The string
+ * @param allowNewlines Allow new lines
+ * @returns The sanitized string
+ */
+export function sanitizeString(str: string, allowNewlines = false): string {
+  if (!str) return '';
+
+  let sanitized = str.trim();
+
+  sanitized = sanitized
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+
+  if (allowNewlines)
+    sanitized = sanitized.replace(/\r?\n/g, '<br />');
+
+  return sanitized;
 }
