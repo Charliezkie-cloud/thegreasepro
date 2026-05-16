@@ -28,9 +28,9 @@ export async function POST(request: NextRequest) {
 
     const sanitizedBody = sanitizeBookingBody(body);
     const finalizedHtml = await getNewBookingHtml(sanitizedBody);
-    const res = await sendNewBookingMail(finalizedHtml);
+    await sendNewBookingMail(finalizedHtml);
 
-    return NextResponse.json(res);
+    return NextResponse.json({ message: "We have successfully sent your booking confirmation." });
   } catch (error) {
     return NextResponse.json(
       { error: error instanceof Error ? error.message : error },
