@@ -43,8 +43,7 @@ export default function Navbar() {
                 <a
                   key={`nav-url-${index}`}
                   href={item.url}
-                  className={`text-xs font-label font-bold uppercase tracking-widest transition-all ${item.url === currentPath ? 'text-primary-container border-b-2 border-primary-container pb-1' : 'text-zinc-400 hover:text-primary-container'
-                    }`}
+                  className={`text-xs font-label font-bold uppercase tracking-widest transition-all ${item.url === currentPath ? 'text-primary-container border-b-2 border-primary-container pb-1' : 'text-zinc-400 hover:text-primary-container'}`}
                 >
                   {item.name}
                 </a>
@@ -84,16 +83,19 @@ export default function Navbar() {
           </div>
 
           <nav className="flex flex-col items-start justify-center gap-8 p-6">
-            {urls.map((item, index) => (
-              <a
-                key={`nav-url-${index}`}
-                href={item.url}
-                className={`text-xs font-label font-bold uppercase tracking-widest transition-all ${item.name === 'Booking' ? 'text-primary-container border-b-2 border-primary-container pb-1' : 'text-zinc-400 hover:text-primary-container'
-                  }`}
-              >
-                {item.name}
-              </a>
-            ))}
+            {urls.map((item, index) => {
+              const currentPath = pathname;
+
+              return (
+                <a
+                  key={`nav-url-${index}`}
+                  href={item.url}
+                  className={`text-xs font-label font-bold uppercase tracking-widest transition-all ${item.url === currentPath ? 'text-primary-container border-b-2 border-primary-container pb-1' : 'text-zinc-400 hover:text-primary-container'}`}
+                >
+                  {item.name}
+                </a>
+              )
+            })}
           </nav>
 
           <div className="flex flex-col items-start justify-center gap-6 p-6">
