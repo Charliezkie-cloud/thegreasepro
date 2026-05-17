@@ -84,14 +84,14 @@ export default function Navbar() {
           </div>
 
           <nav className="flex flex-col items-start justify-center gap-8 p-6">
-            {['Services', 'Booking', 'Expertise', 'Contact'].map((item) => (
+            {urls.map((item, index) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className={`text-xs font-label font-bold uppercase tracking-widest transition-all ${item === 'Booking' ? 'text-primary-container border-b-2 border-primary-container pb-1' : 'text-zinc-400 hover:text-primary-container'
+                key={`nav-url-${index}`}
+                href={item.url}
+                className={`text-xs font-label font-bold uppercase tracking-widest transition-all ${item.name === 'Booking' ? 'text-primary-container border-b-2 border-primary-container pb-1' : 'text-zinc-400 hover:text-primary-container'
                   }`}
               >
-                {item}
+                {item.name}
               </a>
             ))}
           </nav>
