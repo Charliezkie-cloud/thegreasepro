@@ -1,6 +1,6 @@
 "use client"
 
-import { Phone, Menu, X, Mail } from 'lucide-react';
+import { Menu, X, Mail } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
