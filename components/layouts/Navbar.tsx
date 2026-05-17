@@ -1,12 +1,13 @@
 "use client"
 
-import { Phone, Menu, X } from 'lucide-react';
+import { Phone, Menu, X, Mail } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
-const BUSINESS_NUMBER = process.env.NEXT_PUBLIC_BUSINESS_NUMBER ?? "";
+// const BUSINESS_NUMBER = process.env.NEXT_PUBLIC_BUSINESS_NUMBER ?? "";
+const BUSINESS_EMAIL = process.env.NEXT_PUBLIC_BUSINESS_EMAIL ?? "";
 
 const urls = [
   { name: "Booking", url: "/" },
@@ -53,8 +54,8 @@ export default function Navbar() {
 
           <div className="flex items-center gap-6">
             <div className="hidden lg:flex items-center gap-2">
-              <Phone className="w-4 h-4 text-primary-container" />
-              <span className="text-white font-label font-bold text-xs tracking-widest">{BUSINESS_NUMBER}</span>
+              <Mail className="w-4 h-4 text-primary-container" />
+              <span className="text-white font-label font-bold text-xs tracking-widest">{BUSINESS_EMAIL}</span>
             </div>
             <motion.a
               whileHover={{ scale: 1.05 }}
@@ -100,8 +101,8 @@ export default function Navbar() {
 
           <div className="flex flex-col items-start justify-center gap-6 p-6">
             <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-primary-container" />
-              <span className="text-white font-label font-bold text-xs tracking-widest">{BUSINESS_NUMBER}</span>
+              <Mail className="w-4 h-4 text-primary-container" />
+              <span className="text-white font-label font-bold text-xs tracking-widest">{BUSINESS_EMAIL}</span>
             </div>
             <motion.button
               whileHover={{ scale: 1.05 }}

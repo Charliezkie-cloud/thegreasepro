@@ -2,6 +2,7 @@ import { BookingBody } from '@/types/models.types';
 import { Calendar, MapPin, Clock, CheckCircle2, FlaskRound as OilBarrel, Settings2, Diamond, Wrench, LoaderCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ChangeEvent, SubmitEvent, useState } from 'react';
+
 import Modal from '../Modal';
 
 const packages = [
