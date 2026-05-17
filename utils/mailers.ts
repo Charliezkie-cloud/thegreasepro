@@ -23,7 +23,7 @@ export async function sendNewBookingMail(html: string): Promise<SentMessageInfo>
   const mailOptions: MailOptions = {
     from: 'TheGreasePro <charliezkiecharlzk@gmail.com>',
     to: GOOGLE_RECEIVER,
-    subject: "New Booking from TheGreasePro",
+    subject: "A new booking has been scheduled by TheGreasePro.",
     html
   };
 

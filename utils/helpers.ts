@@ -28,26 +28,6 @@ export async function getNewBookingHtml(body: BookingBody): Promise<string> {
 }
 
 /**
- * Sanitizes the booking body into a safe data.
- * @param body The body of the booking
- * @returns The sanitized booking body
- */
-export function sanitizeBookingBody(body: BookingBody): BookingBody {
-  return {
-    firstName: sanitizeString(body.firstName),
-    lastName: sanitizeString(body.lastName),
-    mobileNumber: sanitizeString(body.mobileNumber),
-    emailAddress: sanitizeString(body.emailAddress),
-    servicePackage: sanitizeString(body.servicePackage),
-    preferredDate: sanitizeString(body.preferredDate),
-    preferredTime: sanitizeString(body.preferredTime),
-    servicesAddress: sanitizeString(body.servicesAddress),
-
-    vehicleDetails: sanitizeString(body.vehicleDetails, true),
-  };
-}
-
-/**
  * Sanitizes the string into a safe string value
  * @param str The string
  * @param allowNewlines Allow new lines

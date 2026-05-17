@@ -21,7 +21,7 @@ export default function App() {
         {/* Hero section */}
         <section className="relative h-[90vh] min-h-[600px] flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <Image src={HeroBackground} alt='Dark SUV Background' className="w-full h-full object-cover brightness-[0.3]" />
+            <Image src={HeroBackground} loading='eager' alt='Dark SUV Background' className="w-full h-full object-cover brightness-[0.3]" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#131313] via-transparent to-transparent opacity-80"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#131313] via-transparent to-transparent opacity-60"></div>
           </div>

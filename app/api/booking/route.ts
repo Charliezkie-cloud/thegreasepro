@@ -2,15 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { BookingBody } from "@/types/models.types";
 import { validateBookingForm } from "@/utils/validators";
-import { getNewBookingHtml, sanitizeBookingBody } from "@/utils/helpers";
+import { getNewBookingHtml } from "@/utils/helpers";
 import { sendNewBookingMail } from "@/utils/mailers";
+import { sanitizeBookingBody } from "@/utils/sanitizers";
 
 /**
  * The GET method 
  * @returns The next js response
  */
 export async function GET() {
-  return NextResponse.json({ message: "Hello world" });
+  return NextResponse.json({ message: "Bar foo ;D" });
 }
 
 /**
